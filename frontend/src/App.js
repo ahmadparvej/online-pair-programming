@@ -1,10 +1,9 @@
-import './App.css';
-import EditorPage from './pages/EditorPage';
+import { MainRoutes } from "./Routes/MainRoutes";
 
 function App() {
   return (
-    <div className="App">
-      <EditorPage/>
+    <div>
+      <MainRoutes />
     </div>
   );
 }
