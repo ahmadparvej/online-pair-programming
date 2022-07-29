@@ -1,4 +1,7 @@
-import React,{ useRef, useEffect } from 'react'
+import { EditorComponent } from '../Components/EditorComponent'
+import { User } from '../Components/User'
+import styles from '../Styles/Editor.module.css'
+import React,{useState, useRef, useEffect } from 'react'
 import { initSocket } from './../socket';
 import {useLocation, useNavigate, Navigate, useParams} from 'react-router-dom'
 import { toast } from 'react-hot-toast';
@@ -11,6 +14,10 @@ export const Editor = () => {
     const location = useLocation()
     const socketRef = useRef(null);
     console.log(location);
+
+    let u1 = { socketId: 1, username: "Anshu singh" }
+    let u2 = { socketId: 2, username: "Anshumaan Baaghi" }
+    const [usersList, setUsersList] = useState([u1])
 
     useEffect(()=>{
         const init = async()=>{
@@ -51,6 +58,24 @@ export const Editor = () => {
         }
     },[])
     return (
-        <div style={{color:"white"}}>Editor</div>
-    )
+        <div className={styles.EditorMainDiv}>
+            <div className={styles.EditorSideBar}>
+                <div></div>
+                <div>
+                    <h3>Connected</h3>
+                    <div className={styles.ConnectedUsersList}>
+                        {usersList.map((el) => (
+                            <User key={el.socketId} username={el.username} />
+                        ))}
+                    </div>
+                </div>
+                <div>
+                    <button>Copy Room Id</button>
+                    <button>Leave</button>
+                </div>
+            </div>
+            <div className={styles.EditorTeminalDiv}>
+                <EditorComponent className={styles.EditorComponent} />
+            </div>
+        </div>)
 }

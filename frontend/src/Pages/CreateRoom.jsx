@@ -10,12 +10,19 @@ export const CreateRoom = () => {
     console.log(username);
     console.log(roomId);
     const handleClick = () => {
-        let id = nanoid()
-        setRoomId(id)
-        console.log('roomId:', roomId)
-        console.log('username:', username)
-        toast.success("New Room Created")
-        navigate(`/editor/${roomId}`,{state: {username}})
+        if (!username) {
+            toast.error("Username is required")
+        }
+        else {
+            let id = nanoid()
+            setRoomId(id)
+            toast.success("New Room Created")
+            navigate(`/editor/${roomId}`, {
+                state: {
+                    username
+                }
+            })
+        }
     }
     return (
         <div className={styles.HomePageMain}>
