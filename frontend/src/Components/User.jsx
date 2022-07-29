@@ -5,7 +5,7 @@ export const User = ({ username }) => {
     return (
         <div className={styles.UserMainDiv}>
             <Avatar name={username} size="50px" round="14px" />
-            <div>{username}</div>
+            <div className={styles.username}>{username}</div>
         </div>
     )
 }

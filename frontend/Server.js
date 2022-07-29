@@ -1,11 +1,17 @@
 const express = require("express");
 const ACTIONS = require("./src/Actions")
+const path = require("path")
 
 const app = express()
 
 const http = require('http');
 
 const {Server} = require("socket.io");
+
+app.use(express.static("build"))
+app.use((req,res,next)=>{
+    res.sendFile(path.join(__dirname,'build',"index.html"))
+})
 
 const server = http.createServer(app);
 const io = new Server(server);

@@ -23,7 +23,7 @@ export const Home = () => {
         <div className={styles.HomePageMain}>
             <div id={styles.parent}>
                 <div></div>
-                <div>Please enter your roomId and username!</div>
+                <div>Join Someone's Room !</div>
                 <input onChange={(e) => setRoomId(e.target.value)} type="text" placeholder="ROOM ID" required />
                 <input onChange={(e) => setUsername(e.target.value)} type="text" placeholder="USERNAME" required />
                 <button onClick={handleClick}>JOIN</button>

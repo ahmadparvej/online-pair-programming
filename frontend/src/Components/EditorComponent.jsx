@@ -1,8 +1,8 @@
-import 'codemirror/lib/codemirror.css'
-import 'codemirror/mode/javascript/javascript'
+import 'codemirror/theme/dracula.css'
 import 'codemirror/addon/edit/closetag'
 import 'codemirror/addon/edit/closebrackets'
-import 'codemirror/theme/dracula.css'
+import 'codemirror/lib/codemirror.css'
+import 'codemirror/mode/javascript/javascript'
 
 import React, { useEffect, useRef } from 'react'
 import Codemirror from 'codemirror'
@@ -17,7 +17,7 @@ export const EditorComponent = ({socketRef, roomId, onCodeChange}) => {
                 theme: "dracula",
                 autoCloseTags: true,
                 autoCloseBrackets: true,
-                lineNumbers: false
+                lineNumbers: true
             })
 
             codeEditorRef.current.on("change",(instance, changes)=>{
@@ -47,8 +47,6 @@ export const EditorComponent = ({socketRef, roomId, onCodeChange}) => {
             socketRef.current.off(ACTIONS.CODE_CHANGE)
         }
     },[socketRef.current])
-
-
 
     return (
         <textarea id='CodeEditor'></textarea>

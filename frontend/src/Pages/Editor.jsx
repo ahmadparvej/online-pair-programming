@@ -5,6 +5,7 @@ import React,{useState, useRef, useEffect } from 'react'
 import { initSocket } from './../socket';
 import {useLocation, useNavigate, Navigate, useParams} from 'react-router-dom'
 import { toast } from 'react-hot-toast';
+import { SiCodemirror } from "react-icons/si";
 
 const ACTIONS = require("../Actions.js");
 
@@ -83,9 +84,15 @@ export const Editor = () => {
     return (
         <div className={styles.EditorMainDiv}>
             <div className={styles.EditorSideBar}>
-                <div></div>
                 <div>
-                    <h3>Connected</h3>
+                <div className={styles.logo}>
+                    <p className={styles.logoIcon}><SiCodemirror/></p>
+                    <p className={styles.logoName}>{"Code Together"}</p>
+                </div>
+                <div className={styles.devider}></div>
+                </div>
+                <div>
+                    <h6>Connected</h6>
                     <div className={styles.ConnectedUsersList}>
                         {clients.map((el) => (
                             <User key={el.socketId} username={el.username} />
@@ -98,7 +105,7 @@ export const Editor = () => {
                 </div>
             </div>
             <div className={styles.EditorTeminalDiv}>
-                <EditorComponent className={styles.EditorComponent} socketRef={socketRef} roomId={roomId} onCodeChange={(code)=>{codeRef.current=code}}/>
+                <EditorComponent socketRef={socketRef} roomId={roomId} onCodeChange={(code)=>{codeRef.current=code}}/>
             </div>
         </div>
         )
