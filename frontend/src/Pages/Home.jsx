@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
+import toast from 'react-hot-toast'
 import { Link, useNavigate } from 'react-router-dom'
 import styles from '../Styles/Home.module.css'
 export const Home = () => {
@@ -7,9 +8,16 @@ export const Home = () => {
     const [username, setUsername] = useState('')
     const navigate = useNavigate()
     const handleClick = () => {
-        console.log('roomId:', roomId)
-        console.log('username:', username)
-        navigate(`/editor/${roomId}`)
+        if (!username || !roomId) {
+            toast.error("Room Id & Username is required")
+        }
+        else {
+            navigate(`/editor/${roomId}`, {
+                state: {
+                    username
+                }
+            })
+        }
     }
     return (
         <div className={styles.HomePageMain}>
