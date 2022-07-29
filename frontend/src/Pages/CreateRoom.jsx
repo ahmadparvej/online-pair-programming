@@ -7,13 +7,15 @@ export const CreateRoom = () => {
     const [roomId, setRoomId] = useState(nanoid())
     const [username, setUsername] = useState('')
     const navigate = useNavigate()
+    console.log(username);
+    console.log(roomId);
     const handleClick = () => {
         let id = nanoid()
         setRoomId(id)
         console.log('roomId:', roomId)
         console.log('username:', username)
         toast.success("New Room Created")
-        navigate(`/editor/${roomId}`)
+        navigate(`/editor/${roomId}`,{state: {username}})
     }
     return (
         <div className={styles.HomePageMain}>

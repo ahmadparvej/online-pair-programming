@@ -7,9 +7,13 @@ export const Home = () => {
     const [username, setUsername] = useState('')
     const navigate = useNavigate()
     const handleClick = () => {
+        if(!roomId || !username){
+            console.log("error");
+            return;
+        }
         console.log('roomId:', roomId)
         console.log('username:', username)
-        navigate(`/editor/${roomId}`)
+        navigate(`/editor/${roomId}`,{state:{username}})
     }
     return (
         <div className={styles.HomePageMain}>
