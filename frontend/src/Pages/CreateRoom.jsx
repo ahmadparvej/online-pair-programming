@@ -7,6 +7,8 @@ export const CreateRoom = () => {
     const [roomId, setRoomId] = useState(nanoid())
     const [username, setUsername] = useState('')
     const navigate = useNavigate()
+    console.log(username);
+    console.log(roomId);
     const handleClick = () => {
         if (!username) {
             toast.error("Username is required")
