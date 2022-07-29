@@ -3,7 +3,6 @@ import {Home} from './Pages/Home';
 import {CreateRoom} from './Pages/CreateRoom';
 import {Editor} from './Pages/Editor';
 import { BrowserRouter } from 'react-router-dom'
-
 function App() {
   return (
     <>
