@@ -22,7 +22,8 @@ const Chatroom = () => {
         socket.on("connect", () => {
             console.log("socket Connected")
             socket.emit("joinRoom", location.state.data.room)
-        })        
+        })    
+        return ()=>{}
     }, [])
 
     useEffect(() => {
@@ -36,6 +37,7 @@ const Chatroom = () => {
                 setLoading(false)
             })
         }
+        return ()=>{}
     }, [socket, allMessages])    
 
     useEffect(() => {
