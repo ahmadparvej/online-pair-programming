@@ -12,12 +12,16 @@
   background: #111;
 }
 .EditorTeminalDiv {
-  width: 85%;
+  width: 60%;
+}
+.Chat{
+  width: 30%;
 }
 .ConnectedUsersList{
   display: grid;
   grid-template-columns: repeat(2,1fr);
 }
+
 .logo{
   display: flex;
   align-items: center;

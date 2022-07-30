@@ -6,6 +6,7 @@ import { initSocket } from './../socket';
 import {useLocation, useNavigate, Navigate, useParams} from 'react-router-dom'
 import { toast } from 'react-hot-toast';
 import { SiCodemirror } from "react-icons/si";
+import Chatroom from './../Components/Chatroom';
 
 const ACTIONS = require("../Actions.js");
 
@@ -21,6 +22,8 @@ export const Editor = () => {
     let u1 = { socketId: 1, username: "Anshu singh" }
     let u2 = { socketId: 2, username: "Anshumaan Baaghi" }
     const [clients, setClients] = useState([])
+
+    console.log(clients);
 
     useEffect(()=>{
         const init = async()=>{
@@ -94,9 +97,11 @@ export const Editor = () => {
                 <div>
                     <h6>Connected</h6>
                     <div className={styles.ConnectedUsersList}>
-                        {clients.map((el) => (
-                            <User key={el.socketId} username={el.username} />
-                        ))}
+                        {clients.map((el) =>{
+                            if (el.username) {
+                                return <User key={el.socketId} username={el.username} />
+                            }
+                        })}
                     </div>
                 </div>
                 <div>
@@ -106,6 +111,9 @@ export const Editor = () => {
             </div>
             <div className={styles.EditorTeminalDiv}>
                 <EditorComponent socketRef={socketRef} roomId={roomId} onCodeChange={(code)=>{codeRef.current=code}}/>
+            </div>
+            <div className={styles.Chat}>
+                <Chatroom/>
             </div>
         </div>
         )

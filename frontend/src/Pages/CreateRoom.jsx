@@ -18,9 +18,7 @@ export const CreateRoom = () => {
             setRoomId(id)
             toast.success("New Room Created")
             navigate(`/editor/${roomId}`, {
-                state: {
-                    username
-                }
+                state: {data:{name:username,room:roomId},username}
             })
         }
     }

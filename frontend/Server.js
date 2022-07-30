@@ -1,8 +1,11 @@
 const express = require("express");
 const ACTIONS = require("./src/Actions")
 const path = require("path")
+const cors = require("cors")
+
 
 const app = express()
+app.use(cors())
 
 const http = require('http');
 
@@ -15,7 +18,13 @@ app.use((req,res,next)=>{
 })
 
 const server = http.createServer(app);
-const io = new Server(server);
+const io = new Server(server,{
+    cors: {
+      origin: "http://localhost:3000",
+      methods: ["GET", "POST"]
+    }
+  });
+
 
 const userSocketMap= {}
 
@@ -28,6 +37,15 @@ function getAllConnectedClients(roomId) {
 io.on('connection',(socket)=>{
 
     console.log("Socket connected",socket.id);
+
+    console.log("chat socket connected",socket.id)
+    socket.on("joinRoom", room => {
+          socket.join(room)
+    })
+  
+    socket.on("newMessage", ({newMessage, room}) => {
+      io.in(room).emit("getLatestMessage", newMessage)
+    })
 
     socket.on(ACTIONS.JOIN,({roomId,username})=>{
         userSocketMap[socket.id] = username;

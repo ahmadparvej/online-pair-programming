@@ -13,9 +13,7 @@ export const Home = () => {
         }
         else {
             navigate(`/editor/${roomId}`, {
-                state: {
-                    username
-                }
+                state: {data:{name:username,room:roomId},username}
             })
         }
     }
