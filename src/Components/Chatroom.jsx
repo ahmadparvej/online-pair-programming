@@ -6,7 +6,6 @@ import { io } from "socket.io-client"
 const Chatroom = () => {
 
     const location = useLocation()
-    console.log(location);
     const msgBoxRef = useRef()
 
     const [ data, setData ] = useState({})
@@ -29,8 +28,6 @@ const Chatroom = () => {
     useEffect(() => {
         if(socket){
             socket.on("getLatestMessage", (newMessage) => {
-                console.log(allMessages)
-                console.log(newMessage)
                 setMessages([ ...allMessages,  newMessage ])
                 msgBoxRef.current.scrollIntoView({behavior: "smooth"})
                 setMsg("")

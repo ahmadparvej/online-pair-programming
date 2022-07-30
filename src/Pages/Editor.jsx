@@ -17,13 +17,9 @@ export const Editor = () => {
     const location = useLocation()
     const socketRef = useRef(null);
     const codeRef = useRef(null)
-    console.log(location);
-
     let u1 = { socketId: 1, username: "Anshu singh" }
     let u2 = { socketId: 2, username: "Anshumaan Baaghi" }
     const [clients, setClients] = useState([])
-
-    console.log(clients);
 
     useEffect(()=>{
         const init = async()=>{
