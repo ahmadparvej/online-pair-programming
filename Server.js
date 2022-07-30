@@ -2,7 +2,7 @@ const express = require("express");
 const ACTIONS = require("./src/Actions")
 const path = require("path")
 const cors = require("cors")
-
+const port = process.env.PORT || 8080
 
 const app = express()
 app.use(cors())
@@ -18,12 +18,7 @@ app.use((req,res,next)=>{
 })
 
 const server = http.createServer(app);
-const io = new Server(server,{
-    cors: {
-      origin: "http://localhost:3000",
-      methods: ["GET", "POST"]
-    }
-  });
+const io = new Server(server);
 
 
 const userSocketMap= {}
@@ -78,8 +73,7 @@ io.on('connection',(socket)=>{
     })
 });
 
-const PORT = process.env.PORT || 8080
 
-server.listen(PORT,()=>{
-    console.log(`listening on port ${PORT}`);
+server.listen(port,()=>{
+    console.log(`listening on port ${port}`);
 });
